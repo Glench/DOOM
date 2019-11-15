@@ -43,7 +43,7 @@ DOOM will return whatever value DOOM has in its cache — or (as a fallback) wha
 
 DOOM also offers a handful of functions for manipulating the DOM hierarchy.
 
-You can create a new DOM element by calling `DOOM.create` with the tag name, (optional) parent element, and (optional) object of props/attrs/styles to set on the new element.
+You can create a new DOM element by calling `DOOM.create` with the tag name, (optional) parent element (`document.body` if argument excluded), and (optional) object of props/attrs/styles to set on the new element.
 
 ```coffee
 div = DOOM.create "div", document.body, textContent: "I feel elemental."
@@ -68,6 +68,7 @@ DOOM.empty someParentElm # Removes all children
 
 * When setting an HTML/SVG attribute, use an empty string to set a boolean attribute: `DOOM elm, disabled: ""`
 * If you want to remove an attribute, pass null: `DOOM elm, disabled: null`.
+* For some styles, you can just pass a number and 'px' will automatically be appended e.g. `{'width': 20}`. For a full list, see `numberOnlyStyleNames` in the source code.
 * `undefined` values are ignored.
 
 ### Project Philosophy
