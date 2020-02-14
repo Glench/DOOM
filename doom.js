@@ -24,6 +24,7 @@
     animation: true,
     animationDelay: true,
     background: true,
+    backgroundColor: true,
     border: true,
     borderTop: true,
     borderLeft: true,
@@ -66,6 +67,7 @@
     top: true,
     transform: "html",
     transition: true,
+    verticalAlign: true,
     visibility: true,
     width: "html",
     zIndex: true
@@ -83,7 +85,7 @@
     text: true,
     use: true
   };
-  // add these so I can just do DOOM.(elm, {padding: 10})
+  // add these so I can just do DOOM.create(elm, {padding: 10})
   numberOnlyStyleNames = {
     borderWidth: true,
     padding: true,
@@ -103,7 +105,8 @@
     width: true,
     height: true,
     maxWidth: true,
-    maxHeight: true
+    maxHeight: true,
+    fontSize: true
   }
   read = function(elm, k) {
     var base, base1, base2;
@@ -251,6 +254,10 @@
     return child;
   };
   DOOM.remove = function(parent, child) {
+    if (!child) {
+        parent = document.body;
+        child = parent;
+    }
     if (child.parentNode === parent) {
       parent.removeChild(child);
     }
