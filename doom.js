@@ -86,7 +86,7 @@
     use: true
   };
   // add these so I can just do DOOM.create(elm, {padding: 10})
-  numberOnlyStyleNames = {
+  var numberOnlyStyleNames = {
     borderWidth: true,
     padding: true,
     paddingLeft: true,
@@ -107,6 +107,17 @@
     maxWidth: true,
     maxHeight: true,
     fontSize: true
+  }
+  var eventNames = {
+    onBlur: true,
+    onClick: true,
+    onInput: true,
+    onKeyPress: true,
+    onKeyDown: true,
+    onKeyUp: true,
+    onMouseEnter: true,
+    onMouseLeave: true,
+    onMouseMove: true
   }
   read = function(elm, k) {
     var base, base1, base2;
@@ -137,6 +148,9 @@
         }
         return elm.style[k] = cache[k] = v;
       }
+    } else if (eventNames[k] != null) {
+        var realEventName = k.replace('on', '').toLowerCase();
+        elm.addEventListener(realEventName, v, true)
     } else {
       cache = elm._HTML_attr;
       if (cache[k] === v) {
@@ -253,15 +267,9 @@
     }
     return child;
   };
-  DOOM.remove = function(parent, child) {
-    if (!child) {
-        parent = document.body;
-        child = parent;
-    }
-    if (child.parentNode === parent) {
-      parent.removeChild(child);
-    }
-    return child;
+  DOOM.remove = function(node) {
+    node.parentNode.removeChild(node);
+    return node;
   };
   DOOM.empty = function(elm) {
     return elm.innerHTML = "";
