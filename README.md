@@ -12,13 +12,14 @@ DOOM attaches itself to the window, to the current `this` wherever it's loaded (
 
 #### Writing
 
-Call the `DOOM` function with an element, and an object where keys are the name of a property, attribute, or style and the values are the desired value.
+Call the `DOOM` function with an element, and an object where keys are the name of a property, attribute, style, or event names and the values are the desired value.
 
 ```JavaScript
 DOOM(elm, {
   innerHTML: "<h1>ERROR</h1>", // property
   myCustomAttr: "active", // attribute
-  color: "red" // style
+  color: "red", // style
+  click: evt => DOOM.remove(evt.target) // event handler
 })
 ```
 
