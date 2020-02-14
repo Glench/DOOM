@@ -64,6 +64,7 @@ DOOM.empty(someParentElm) // Removes all children
 * For HTML/SVG attributes, `lowerCamelCase` is normalized into `kebab-case`.
 * An exception to the above is the list of `attrNames` in the code — these are treated as case-sensitive and are not normalized. This is essential for SVG, which uses a handful of case-sensitive attribute names.
 * If you need to use a name that isn't a legal key literal, supply it as a string key: `DOOM(elm, {"-webkit-filter": "blur(12px)"})`
+* You can add event listeners as keys e.g. `DOOM(el, {onClick: console.log('hi') })`
 
 ### Special Rules for Values
 
