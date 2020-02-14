@@ -109,15 +109,15 @@
     fontSize: true
   }
   var eventNames = {
-    onBlur: true,
-    onClick: true,
-    onInput: true,
-    onKeyPress: true,
-    onKeyDown: true,
-    onKeyUp: true,
-    onMouseEnter: true,
-    onMouseLeave: true,
-    onMouseMove: true
+    blur: true,
+    click: true,
+    input: true,
+    keypress: true,
+    keydown: true,
+    keyup: true,
+    mouseenter: true,
+    mouseleave: true,
+    mousemove: true
   }
   read = function(elm, k) {
     var base, base1, base2;
@@ -149,8 +149,7 @@
         return elm.style[k] = cache[k] = v;
       }
     } else if (eventNames[k] != null) {
-        var realEventName = k.replace('on', '').toLowerCase();
-        elm.addEventListener(realEventName, v, true)
+        elm.addEventListener(k, v, true)
     } else {
       cache = elm._HTML_attr;
       if (cache[k] === v) {
