@@ -48,7 +48,7 @@ DOOM also offers a handful of functions for manipulating the DOM hierarchy.
 You can create a new DOM element by calling `DOOM.create` with the tag name, (optional) parent element (`document.body` if argument excluded), and (optional) object of props/attrs/styles to set on the new element.
 
 ```JavaScript
-var div = DOOM.create("div", document.body, {textContent: "I feel elemental."})
+var div = DOOM.create("div", {textContent: "I feel elemental."})
 ```
 
 There's also the old standbys from the JQuery era...
