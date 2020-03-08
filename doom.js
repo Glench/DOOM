@@ -117,7 +117,9 @@
     keyup: true,
     mouseenter: true,
     mouseleave: true,
-    mousemove: true
+    mousemove: true,
+    mousedown: true,
+    mouseup: true
   }
   read = function(elm, k) {
     var base, base1, base2;
@@ -149,7 +151,17 @@
         return elm.style[k] = cache[k] = v;
       }
     } else if (eventNames[k] != null) {
-        elm.addEventListener(k, v, true)
+        cache = elm._HTML_event;
+        if (cache[k] == v) return;
+        if (cache[k] && v) throw 'DOOM experimentally imposes a limit of one handler per event per object.'
+        if (v) {
+            elm.addEventListener(k, v, true)
+        } else {
+            // pass null to remove event listener
+            elm.removeEventListener(k, cache[k], true)
+        }
+        cache[k] = v
+        return v;
     } else {
       cache = elm._HTML_attr;
       if (cache[k] === v) {
@@ -183,6 +195,9 @@
     }
     if (elm._HTML_style == null) {
       elm._HTML_style = {};
+    }
+    if (elm._HTML_event == null) {
+      elm._HTML_event = {};
     }
     if (typeof opts === "object") {
       for (k in opts) {
