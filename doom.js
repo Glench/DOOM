@@ -282,7 +282,7 @@
     return child;
   };
   DOOM.remove = function(node) {
-    node.parentNode.removeChild(node);
+    node.remove(node);
     return node;
   };
   DOOM.empty = function(elm) {
